@@ -1,0 +1,573 @@
+
+.phone-app {
+    width: 390px;   /* iPhone 14/15 standard width */
+    height: 844px;  /* iPhone height */
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    overflow-x: hidden;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    overflow-y: auto;
+}
+/* --- Global Styles --- */
+body {
+    font-family: Arial, Helvetica, sans-serif; 
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+    padding-bottom: 70px; /* Space for the fixed bottom nav */
+}
+
+.app-container {
+    padding: 16px;
+}
+
+.section-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+/* --- Header & Search Bar --- */
+.search-bar {
+    background-color: #eee;
+    padding: 10px 15px;
+    border-radius: 25px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.filters {
+    display: flex;
+    gap: 8px; /* Space between pill buttons */
+    /* Allows filters to scroll horizontally if needed */
+    overflow-x: auto; 
+    padding-bottom: 5px; /* Visual space for scrollbar (if visible) */
+}
+
+.pill-button {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    white-space: nowrap; /* Keeps button text on one line */
+    cursor: pointer;
+}
+
+/* --- Banner --- */
+.banner-image {
+    width: 100%;
+    height: 200px; /* Adjust as needed */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* --- What's Popular Section (Horizontal Scroll) --- */
+.popular-scroll-container {
+    display: flex;
+    gap: 15px;
+    overflow-x: scroll;
+    padding-bottom: 10px;
+}
+
+.popular-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.popular-card {
+    flex-shrink: 0;
+    width: 160px; /* Fixed width for the popular cards */
+}
+
+.popular-card .card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.card-type {
+    font-size: 0.8em;
+    color: #888;
+    margin: 0;
+}
+
+.card-title {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* --- Bottom Navigation Bar --- */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+}
+
+.nav-icon {
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #888;
+    padding: 5px;
+}
+
+.go-bus {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #000; /* Use your brand color here */
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+/* --- Page Header (for sub-pages like Sports) --- */
+.page-header {
+    display: flex;
+    align-items: center;
+    padding: 0 0 15px 0; /* Adjust padding if app-container also has padding */
+    position: relative; /* For centering h1 */
+}
+
+.page-header h1 {
+    flex-grow: 1; /* Allows h1 to take available space */
+    text-align: center; /* Centers the title */
+    margin: 0;
+    font-size: 1.2em; /* Slightly smaller than section titles */
+}
+
+.back-button {
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #333; /* Darker for better visibility */
+    position: absolute; /* Position absolutely relative to .page-header */
+    left: 0; /* Align to the left edge of the .app-container padding */
+    padding: 0;
+}
+
+/* --- Sport Filters (Horizontal Scroll) --- */
+.sport-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: scroll; /* Enable horizontal scrolling */
+    padding-bottom: 10px; /* Space below filters */
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Hide scrollbar for a cleaner look */
+.sport-filters::-webkit-scrollbar {
+    display: none;
+}
+
+/* Specific styling for the pill buttons within sport-filters */
+.sport-filters .pill-button {
+    flex-shrink: 0; /* Prevents buttons from shrinking */
+    background-color: #f0f0f0; /* Default background for unselected */
+    color: #555; /* Default text color */
+    border: none; /* No border for these pills */
+}
+
+.sport-filters .pill-button.active {
+    background-color: #000; /* Black background for active button */
+    color: #fff; /* White text for active button */
+    font-weight: bold;
+}
+
+/* --- Event Listings --- */
+.event-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.event-item:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.event-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: red; /* The small red dot */
+    margin-right: 10px;
+    flex-shrink: 0; /* Prevent it from shrinking */
+}
+
+.team-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    background-color: #ddd; /* Placeholder background */
+    flex-shrink: 0; /* Prevent it from shrinking */
+}
+
+.event-details {
+    flex-grow: 1; /* Allows details to take available space */
+}
+
+.event-title {
+    font-weight: bold;
+    margin: 0 0 3px 0;
+    font-size: 1em;
+}
+
+.event-time-ago {
+    font-weight: normal;
+    color: #888;
+    font-size: 0.85em;
+    margin-left: 5px;
+}
+
+.event-subtitle {
+    color: #777;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+/* Ensure bottom nav active state is visible for this page */
+.bottom-nav .nav-icon.active {
+    color: blue; /* Or whatever active color you prefer */
+}
+
+/* --- Settings Page Specific Styles --- */
+.settings-group {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+}
+
+.settings-group-title {
+    font-size: 0.9em;
+    color: #888;
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.settings-item,
+.settings-item-toggle {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.settings-item:last-child,
+.settings-item-toggle:last-child {
+    border-bottom: none;
+}
+
+.settings-icon {
+    font-size: 1.2em;
+    margin-right: 15px;
+    width: 25px; /* Fixed width for icon to align text */
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.settings-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 1em;
+    flex-grow: 1; /* Allows link to take up remaining space */
+}
+
+/* --- Toggle Switch Styles (CSS from W3Schools or similar) --- */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+    margin-right: 15px; /* Space between toggle and link */
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3; /* Blue for ON state */
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* --- Bottom Nav Adjustments for this page --- */
+/* Assuming this page has a different bottom nav structure */
+.bottom-nav .nav-icon.active {
+    color: #2196F3; /* Example active color for new nav icons */
+}
+
+/* Styles for the new bottom nav icons and badge */
+.bottom-nav .nav-icon img {
+    width: 28px; /* Adjust size */
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 0.7em;
+    padding: 2px 5px;
+    border-radius: 50%;
+    min-width: 10px; /* Ensures it's round even with single digit */
+    text-align: center;
+    line-height: 1; /* For vertical alignment */
+}
+
+/* Adjust position of nav-icon for badge */
+.bottom-nav .nav-icon {
+    position: relative; /* To position badge correctly */
+}
+
+/* Adjust the existing nav-icon size if needed */
+.bottom-nav .nav-icon {
+    font-size: 1.8em; /* Make general icons a bit larger */
+}
+
+/* Specific icon styles for your new bottom nav */
+.bottom-nav .nav-icon.user-avatar {
+    /* No specific font size, img handles size */
+    font-size: initial;
+
+/* --- Simple Header for Notifications Page --- */
+.simple-header {
+    padding: 0 0 15px 0;
+}
+
+.simple-header h1 {
+    font-size: 1.8em; 
+    font-weight: bold;
+    margin: 0;
+}
+
+/* --- Notification Listings (Similar to Event Listings) --- */
+.notification-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    /* Optional: Slight padding on the left to align with the page title */
+    padding-left: 0; 
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+/* Status Dot for Unread Notifications (Red Dot) */
+.notification-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: red;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+/* Notifications that are 'read' will not have the dot */
+.notification-item:nth-child(6) .notification-status, 
+.notification-item:nth-child(7) .notification-status {
+    /* These items in the screenshot don't have the red dot, so we hide it */
+    display: none; 
+}
+
+/* Shift items without a dot to the left slightly */
+.notification-item:nth-child(6), 
+.notification-item:nth-child(7) {
+    /* If status is hidden, shift the item left to visually align */
+    padding-left: 18px; /* 8px dot width + 10px margin-right */
+}
+
+.notif-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    background-color: #ddd; /* Placeholder background */
+    flex-shrink: 0;
+}
+
+.notif-details {
+    flex-grow: 1;
+}
+
+.notif-title {
+    font-weight: bold;
+    margin: 0 0 3px 0;
+    font-size: 1em;
+}
+
+.notif-time-ago {
+    font-weight: normal;
+    color: #888;
+    font-size: 0.85em;
+    margin-left: 5px;
+}
+
+.notif-subtitle {
+    color: #777;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+/* --- Bottom Nav Active State --- */
+.bottom-nav a.active {
+    /* Ensure the active notification icon is styled */
+    color: blue; /* Or your chosen accent color */
+}
+/* --- Simple Header for Notifications Page --- */
+.simple-header {
+    padding: 0 0 15px 0;
+}
+
+.simple-header h1 {
+    font-size: 1.8em; 
+    font-weight: bold;
+    margin: 0;
+}
+
+/* --- Notification Listings (Similar to Event Listings) --- */
+.notification-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    /* Optional: Slight padding on the left to align with the page title */
+    padding-left: 0; 
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+/* Status Dot for Unread Notifications (Red Dot) */
+.notification-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: red;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+/* Notifications that are 'read' will not have the dot */
+.notification-item:nth-child(6) .notification-status, 
+.notification-item:nth-child(7) .notification-status {
+    /* These items in the screenshot don't have the red dot, so we hide it */
+    display: none; 
+}
+
+/* Shift items without a dot to the left slightly */
+.notification-item:nth-child(6), 
+.notification-item:nth-child(7) {
+    /* If status is hidden, shift the item left to visually align */
+    padding-left: 18px; /* 8px dot width + 10px margin-right */
+}
+
+.notif-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    background-color: #ddd; /* Placeholder background */
+    flex-shrink: 0;
+}
+
+.notif-details {
+    flex-grow: 1;
+}
+
+.notif-title {
+    font-weight: bold;
+    margin: 0 0 3px 0;
+    font-size: 1em;
+}
+
+.notif-time-ago {
+    font-weight: normal;
+    color: #888;
+    font-size: 0.85em;
+    margin-left: 5px;
+}
+
+.notif-subtitle {
+    color: #777;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+/* --- Bottom Nav Active State --- */
+.bottom-nav a.active {
+    /* Ensure the active notification icon is styled */
+    color: blue; /* Or your chosen accent color */}} 
