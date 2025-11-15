@@ -11,9 +11,6 @@ class OpenAIService {
   static const double _temperature = 0.7;
   static const double _topP = 0.9;
 
-  static int _conversationCount = 0;
-  static DateTime? _lastResponseTime;
-
   void _validateApiKey() {
     if (_apiKey.isEmpty) {
       throw Exception(
@@ -26,9 +23,6 @@ class OpenAIService {
     _validateApiKey();
 
     try {
-      _conversationCount++;
-      _lastResponseTime = DateTime.now();
-
       final systemPrompt = _getHelpfulSystemPrompt(message);
 
       final List<Map<String, String>> messages = [
